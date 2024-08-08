@@ -13,4 +13,7 @@ public interface AutomationRepository extends Neo4jRepository<Node, String> {
 
     @Query("MATCH (n)-[r]->(m) WHERE type(r) = $relationType RETURN DISTINCT n")
     List<Node> findNodesByRelationType(@Param("relationType") String relationType);
+
+    @Query("MATCH (ip:Node{ip: $ip}) RETURN ip")
+    List<Node> fetchNodeByInputIP(String ip);
 }
